@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class LinkedList<T> implements  List<T> {
@@ -77,7 +78,11 @@ public class LinkedList<T> implements  List<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+        int counter = 0;
+        for(T element: this){
+            a[counter++] = (T1)element;
+        }
+        return a;
     }
 
     @Override

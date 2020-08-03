@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,5 +71,17 @@ class LinkedListTest {
         int gibberish = 9999;
 
         Assertions.assertTrue(list.contains(567) && !list.contains(gibberish));
+    }
+
+    @Test
+    void toArrayWorks(){
+        List<Integer> list = new LinkedList<Integer>();
+        list.add(123);
+        list.add(567);
+
+        Integer[] ints = list.toArray(new Integer[2]);
+
+
+        Assertions.assertTrue(ints[0] == 123 && ints[1] == 567);
     }
 }
