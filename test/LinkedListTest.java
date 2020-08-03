@@ -84,4 +84,28 @@ class LinkedListTest {
 
         Assertions.assertTrue(ints[0] == 123 && ints[1] == 567);
     }
+
+    @Test
+    void removeElementFromList(){
+        List<Integer> list = new LinkedList<Integer>();
+        list.add(123);
+        list.add(567);
+
+        Integer i = 567;
+        list.remove(i);
+
+        Assertions.assertFalse(list.contains(567));
+    }
+
+    @Test
+    void findValue(){
+        List<Integer> list = new LinkedList<Integer>();
+        list.add(123);
+        list.add(567);
+
+
+        int index = list.indexOf(567);
+
+        Assertions.assertEquals(1, index);
+    }
 }

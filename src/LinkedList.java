@@ -104,6 +104,10 @@ public class LinkedList<T> implements  List<T> {
 
     @Override
     public boolean remove(Object o) {
+        ListElement<T> previous = nextElement;
+        for(T element: this){
+
+        }
         return false;
     }
 
@@ -159,7 +163,14 @@ public class LinkedList<T> implements  List<T> {
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        int counter = 0;
+        for(T element: this){
+            if(element.equals(o)){
+                return counter;
+            }
+            counter++;
+        }
+        return -1;
     }
 
     @Override
