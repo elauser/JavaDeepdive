@@ -15,20 +15,41 @@ public class LinkedList<T> implements  List<T> {
         }
     }
 
+    class ElementIterator implements Iterator<T> {
+        ListElement<T> thisElement = nextElement;
+
+        @Override
+        public boolean hasNext() {
+            return Objects.nonNull(thisElement);
+        }
+
+        @Override
+        public T next() {
+            T value =  thisElement.value;
+            thisElement = thisElement.nextElement;
+            return value;
+        }
+    };
+
     public LinkedList() {
     }
 
-    @Override
-    public int size() {
-       if(this.isEmpty()) return 0;
+    public static void main(String[] args) {
+        List<Integer> list= new LinkedList<>();
+        list.add(1);
+        list.add(2);
+        for(Integer integer: list){
+            System.out.println(integer);
+        }
+    }
 
-       int counter = 1;
-       ListElement<T> next = this.nextElement;
-       while(Objects.nonNull(next.nextElement)){
-           next = next.nextElement;
-           counter++;
-       }
-       return counter;
+    @Override
+    public int size(){
+        int counter = 0;
+        for(T element: this){
+            counter++;
+        }
+        return counter;
     }
 
     @Override
@@ -43,20 +64,7 @@ public class LinkedList<T> implements  List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>(){
-            ListElement<T> thisElement = nextElement;
-
-            @Override
-            public boolean hasNext() {
-                return Objects.nonNull(thisElement) && Objects.nonNull( thisElement.nextElement);
-            }
-
-            @Override
-            public T next() {
-                thisElement = thisElement.nextElement;
-                return thisElement.value;
-            }
-        };
+        return new ElementIterator();
     }
 
     @Override
@@ -165,6 +173,7 @@ public class LinkedList<T> implements  List<T> {
     public List<T> subList(int fromIndex, int toIndex) {
         return null;
     }
+
 
 
 

@@ -59,7 +59,7 @@ class LinkedListTest {
             if(integer != 123) counter--;
         }
 
-        Assertions.assertEquals(4, counter);
+        Assertions.assertEquals(5, counter);
     }
 
 }
