@@ -59,6 +59,9 @@ public class LinkedList<T> implements  List<T> {
 
     @Override
     public boolean contains(Object o) {
+        for(T element: this){
+            if(element.equals(o)) return true;
+        }
         return false;
     }
 

@@ -62,4 +62,13 @@ class LinkedListTest {
         Assertions.assertEquals(5, counter);
     }
 
+    @Test
+    void containsFindsValue(){
+        List<Integer> list = new LinkedList<Integer>();
+        list.add(123);
+        list.add(567);
+        int gibberish = 9999;
+
+        Assertions.assertTrue(list.contains(567) && !list.contains(gibberish));
+    }
 }
