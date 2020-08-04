@@ -10,6 +10,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTest {
+
+    List<Integer> getList0to9(){
+        List<Integer> list = new LinkedList<Integer>();
+        for(int i = 0; i < 10; i++){
+            list.add(i);
+        }
+        return list;
+    }
+
     @Test
     void newListIsEmpty() {
         List<Integer> emptyList = new LinkedList<Integer>();
@@ -98,7 +107,7 @@ class LinkedListTest {
     }
 
     @Test
-    void findValue(){
+    void findExistingValueInList(){
         List<Integer> list = new LinkedList<Integer>();
         list.add(123);
         list.add(567);
@@ -108,4 +117,34 @@ class LinkedListTest {
 
         Assertions.assertEquals(1, index);
     }
+
+    @Test
+    void failOnFindNonExistingNumber(){
+        List<Integer> list = new LinkedList<Integer>();
+        list.add(123);
+        list.add(567);
+
+
+        int index = list.indexOf(56789);
+
+        Assertions.assertEquals(-1, index);
+    }
+
+
+    @ParameterizedTest
+    @ValueSource (ints = {-1, 20, 30})
+    void throwErrorOnGetOutOfBounds(int testValues){
+        List<Integer> list = getList0to9();
+
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> list.get(testValues));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0,1,2})
+    void getValuesFromList(int index){
+        List<Integer> list = getList0to9();
+
+        Assertions.assertEquals(index, list.get(index));
+    }
+
 }

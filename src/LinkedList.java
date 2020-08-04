@@ -143,6 +143,15 @@ public class LinkedList<T> implements  List<T> {
 
     @Override
     public T get(int index) {
+        int size = this.size();
+        if(index < 0 || index > size){
+            throw new IndexOutOfBoundsException("Index needs to be between 0 and size() (" + size + "), but was "+ index);
+        }
+
+        int counter = 0;
+        for(T element: this){
+            if(counter++ == index) return element;
+        }
         return null;
     }
 
