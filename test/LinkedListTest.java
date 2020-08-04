@@ -243,4 +243,18 @@ class LinkedListTest {
         Assertions.assertFalse(list.contains(sublist));
     }
 
+    @Test
+    void addAllContainsAllSubitems(){
+        List<Integer> list = getList0to9();
+        List<Integer> sublist = new LinkedList<>();
+        sublist.add(35);
+        sublist.add(20);
+        sublist.add(4);
+
+        list.addAll(sublist);
+        int totalElements = 13;
+
+        Assertions.assertTrue(list.containsAll(sublist), "Endlist has all Elements of the inserted List");
+        Assertions.assertEquals(totalElements, list.size(), "Endlist ist as long as both separate combined");
+    }
 }

@@ -33,8 +33,6 @@ public class LinkedList<T> implements List<T> {
         }
     }
 
-    ;
-
     public LinkedList() {
     }
 
@@ -135,7 +133,11 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        if(c.size()==0) return false;
+        for(T object: c){
+            this.add(object);
+        }
+        return true;
     }
 
     @Override
