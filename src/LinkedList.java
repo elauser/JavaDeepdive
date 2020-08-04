@@ -244,7 +244,15 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        int lastHit = -1;
+        int counter = 0;
+        for(T element: this){
+            if (o.equals(element)) {
+                lastHit = counter;
+            }
+            counter++;
+        }
+        return lastHit;
     }
 
     @Override

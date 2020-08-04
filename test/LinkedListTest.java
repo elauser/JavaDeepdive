@@ -306,4 +306,13 @@ class LinkedListTest {
         Assertions.assertEquals(100, list.get(9));
 
     }
+
+    @Test
+    void lastIndexOf(){
+        List<Integer> list = getList0to9();
+
+        list.add(2);
+
+        Assertions.assertEquals(10, list.lastIndexOf(2));
+    }
 }
