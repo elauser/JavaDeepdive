@@ -95,7 +95,7 @@ class LinkedListTest {
     }
 
     @Test
-    void removeFirstElementFromList(){
+    void removeIndexFirstElementFromList(){
         List<Integer> list = new LinkedList<Integer>();
         list.add(123);
         list.add(567);
@@ -106,7 +106,7 @@ class LinkedListTest {
     }
 
     @Test
-    void removeMiddleElementFromList(){
+    void removeIndexMiddleElementFromList(){
         List<Integer> list = new LinkedList<Integer>();
         list.add(123);
         list.add(567);
@@ -121,7 +121,7 @@ class LinkedListTest {
     }
 
     @Test
-    void removeLastElementFromList(){
+    void removeIndexLastElementFromList(){
         List<Integer> list = new LinkedList<Integer>();
         list.add(123);
         list.add(567);
@@ -133,6 +133,49 @@ class LinkedListTest {
         Assertions.assertEquals(2, list.size());
         Assertions.assertTrue(list.contains(123));
         Assertions.assertTrue(list.contains(567));
+    }
+
+    @Test
+    void removeFirstObjectFromList(){
+        List<Integer> list = getList0to9();
+
+        boolean isRemoved = list.remove(Integer.valueOf(0));
+
+        Assertions.assertTrue(isRemoved, "Element didn't get removed");
+        Assertions.assertEquals(9, list.size(),"List is not one smaller than the start list");
+        Assertions.assertFalse(list.contains(0), "List still contains the removed Value");
+    }
+
+    @Test
+    void removeLastObjectFromList(){
+        List<Integer> list = getList0to9();
+
+        boolean isRemoved = list.remove(Integer.valueOf(9));
+
+        Assertions.assertTrue(isRemoved, "Element didn't get removed");
+        Assertions.assertEquals(9, list.size(),"List is not one smaller than the start list");
+        Assertions.assertFalse(list.contains(9), "List still contains the removed Value");
+
+    }
+    @Test
+    void removeMiddleObjectFromList(){
+        List<Integer> list = getList0to9();
+
+        boolean isRemoved = list.remove(Integer.valueOf(1));
+
+        Assertions.assertTrue(isRemoved, "Element didn't get removed");
+        Assertions.assertEquals(9, list.size(),"List is not one smaller than the start list");
+        Assertions.assertFalse(list.contains(1), "List still contains the removed Value");
+    }
+
+    @Test
+    void removeFailsIfValueDoesNotExist(){
+        List<Integer> list = getList0to9();
+
+        boolean isRemoved = list.remove(Integer.valueOf(10));
+
+        Assertions.assertFalse(isRemoved);
+        Assertions.assertEquals(10, list.size());
     }
 
 

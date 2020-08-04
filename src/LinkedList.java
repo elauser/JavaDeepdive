@@ -107,9 +107,20 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
-        ListElement<T> previous = nextElement;
-        for (T element : this) {
+        if(Objects.isNull(this.nextElement)) return false;
 
+        if(this.nextElement.value.equals(o)){
+            this.nextElement = this.nextElement.nextElement;
+            return true;
+        }
+
+        ListElement<T> pointer = this.nextElement;
+        while(Objects.nonNull(pointer.nextElement)){
+            if(pointer.nextElement.value.equals(o)){
+                pointer.nextElement = pointer.nextElement.nextElement;
+                return true;
+            }
+            pointer = pointer.nextElement;
         }
         return false;
     }
