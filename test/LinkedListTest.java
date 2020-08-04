@@ -95,16 +95,46 @@ class LinkedListTest {
     }
 
     @Test
-    void removeElementFromList(){
+    void removeFirstElementFromList(){
         List<Integer> list = new LinkedList<Integer>();
         list.add(123);
         list.add(567);
 
-        Integer i = 567;
-        list.remove(i);
 
-        Assertions.assertFalse(list.contains(567));
+        list.remove(0);
+        Assertions.assertFalse(list.contains(123));
     }
+
+    @Test
+    void removeMiddleElementFromList(){
+        List<Integer> list = new LinkedList<Integer>();
+        list.add(123);
+        list.add(567);
+        list.add(8910);
+
+        int value = list.remove(1);
+
+        Assertions.assertEquals(567, value);
+        Assertions.assertEquals(2, list.size());
+        Assertions.assertTrue(list.contains(123));
+        Assertions.assertTrue(list.contains(8910));
+    }
+
+    @Test
+    void removeLastElementFromList(){
+        List<Integer> list = new LinkedList<Integer>();
+        list.add(123);
+        list.add(567);
+        list.add(8910);
+
+        int value = list.remove(2);
+
+        Assertions.assertEquals(8910, value);
+        Assertions.assertEquals(2, list.size());
+        Assertions.assertTrue(list.contains(123));
+        Assertions.assertTrue(list.contains(567));
+    }
+
 
     @Test
     void findExistingValueInList(){
@@ -132,7 +162,7 @@ class LinkedListTest {
 
 
     @ParameterizedTest
-    @ValueSource (ints = {-1, 20, 30})
+    @ValueSource (ints = {-1, 10, 20, 30})
     void throwErrorOnGetOutOfBounds(int testValues){
         List<Integer> list = getList0to9();
 
