@@ -287,4 +287,23 @@ class LinkedListTest {
         Assertions.assertEquals(11, list.size());
 
     }
+
+    @Test
+    void setFirstElement(){
+        List<Integer> list = getList0to9();
+
+        list.set(0, 100);
+
+        Assertions.assertEquals(100, list.get(0));
+    }
+
+    @Test
+    void setLastElement(){
+        List<Integer> list = getList0to9();
+
+        list.set(9, 100);
+
+        Assertions.assertEquals(100, list.get(9));
+
+    }
 }

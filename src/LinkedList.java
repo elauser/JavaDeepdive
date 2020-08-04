@@ -179,7 +179,15 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
-        return null;
+        int counter = 0;
+        if(index == 0) this.nextElement.value = element;
+        ListElement<T> elementIter = this.nextElement;
+        for (int i = 0; i < index; i++) {
+            elementIter = elementIter.nextElement;
+        }
+        T previousValue = elementIter.value;
+        elementIter.value = element;
+        return previousValue;
     }
 
     @Override
