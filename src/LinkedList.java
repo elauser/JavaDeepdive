@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class LinkedList<T> implements List<T> {
@@ -11,13 +10,17 @@ public class LinkedList<T> implements List<T> {
         public ListElement(T value) {
             this.value = value;
         }
+        public ListElement(T value, ListElement<T> nextElement){
+            this.value = value;
+            this.nextElement = nextElement;
+        }
 
         public void setNextElement(T t) {
             nextElement = new ListElement<T>(t);
         }
     }
 
-    class ElementIterator implements Iterator<T> {
+    class ValueIterator implements Iterator<T> {
         ListElement<T> thisElement = nextElement;
 
         @Override
@@ -69,7 +72,7 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new ElementIterator();
+        return new ValueIterator();
     }
 
     @Override
@@ -181,7 +184,21 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void add(int index, T element) {
+        int listSize = this.size();
+        if(index < 0 || index > listSize) {
+            throw new IndexOutOfBoundsException("Index needs to be between 0 and this.size()-1");
+        }
 
+        if(index == 0) {
+            this.nextElement = new ListElement<T>(element, this.nextElement);
+            return;
+        }
+
+        ListElement<T> pointer = this.nextElement;
+        for(int i = 0; i < index-1; i++){
+            pointer = pointer.nextElement;
+        }
+        pointer.nextElement = new ListElement<>(element, pointer.nextElement);
     }
 
     @Override
@@ -236,6 +253,5 @@ public class LinkedList<T> implements List<T> {
     public List<T> subList(int fromIndex, int toIndex) {
         return null;
     }
-
 
 }

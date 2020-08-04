@@ -257,4 +257,34 @@ class LinkedListTest {
         Assertions.assertTrue(list.containsAll(sublist), "Endlist has all Elements of the inserted List");
         Assertions.assertEquals(totalElements, list.size(), "Endlist ist as long as both separate combined");
     }
+
+    @Test
+    void addElementOnIndex(){
+        List<Integer> list = getList0to9();
+
+        list.add(2, 100);
+
+        Assertions.assertEquals(100, list.get(2));
+    }
+
+    @Test
+    void addElementAsFirstElement(){
+        List<Integer> list = getList0to9();
+
+        list.add(0, 100);
+
+        Assertions.assertEquals(100, list.get(0));
+        Assertions.assertEquals(11, list.size());
+    }
+
+    @Test
+    void addElementAsLastElement(){
+        List<Integer> list = getList0to9();
+
+        list.add(9, 100);
+
+        Assertions.assertEquals(100, list.get(9));
+        Assertions.assertEquals(11, list.size());
+
+    }
 }
