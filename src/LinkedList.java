@@ -107,16 +107,16 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
-        if(Objects.isNull(this.nextElement)) return false;
+        if (Objects.isNull(this.nextElement)) return false;
 
-        if(this.nextElement.value.equals(o)){
+        if (this.nextElement.value.equals(o)) {
             this.nextElement = this.nextElement.nextElement;
             return true;
         }
 
         ListElement<T> pointer = this.nextElement;
-        while(Objects.nonNull(pointer.nextElement)){
-            if(pointer.nextElement.value.equals(o)){
+        while (Objects.nonNull(pointer.nextElement)) {
+            if (pointer.nextElement.value.equals(o)) {
                 pointer.nextElement = pointer.nextElement.nextElement;
                 return true;
             }
@@ -127,7 +127,10 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        for(Object o : c){
+            if(!this.contains(o)) return false;
+        }
+        return true;
     }
 
     @Override
@@ -192,7 +195,7 @@ public class LinkedList<T> implements List<T> {
         }
 
         ListElement<T> elementIter = this.nextElement;
-        for (int i = 0; i < index-1; i++) {
+        for (int i = 0; i < index - 1; i++) {
             elementIter = elementIter.nextElement;
         }
         T value = elementIter.nextElement.value;

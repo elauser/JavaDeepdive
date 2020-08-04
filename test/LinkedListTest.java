@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -218,6 +219,28 @@ class LinkedListTest {
         List<Integer> list = getList0to9();
 
         Assertions.assertEquals(index, list.get(index));
+    }
+
+    @Test
+    void containsAllIsTrue(){
+        List<Integer> list = getList0to9();
+        List<Integer> sublist = new LinkedList<>();
+        sublist.add(2);
+        sublist.add(3);
+        sublist.add(4);
+
+        Assertions.assertTrue(list.containsAll(sublist));
+    }
+
+    @Test
+    void sublistFailsContainsAll(){
+        List<Integer> list = getList0to9();
+        List<Integer> sublist = new LinkedList<>();
+        sublist.add(2);
+        sublist.add(20);
+        sublist.add(4);
+
+        Assertions.assertFalse(list.contains(sublist));
     }
 
 }
