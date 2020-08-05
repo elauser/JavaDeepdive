@@ -371,4 +371,15 @@ class LinkedListTest {
 
         Assertions.assertIterableEquals(target, list);
     }
+
+    @Test
+    void removeAllFromSublist(){
+        List<Integer> list = getList0to9();
+        List<Integer> list2 = getListFromTo(7,12);
+        List<Integer> target = getListFromTo(0,7);
+
+        list.removeAll(list2);
+
+        Assertions.assertIterableEquals(target, list);
+    }
 }
