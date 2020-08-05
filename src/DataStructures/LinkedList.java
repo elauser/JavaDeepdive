@@ -1,23 +1,26 @@
+package DataStructures;
+
 import java.util.*;
 
 public class LinkedList<T> implements List<T> {
-    protected ListElement<T> nextElement;
+    protected ListElement nextElement;
 
-    private class ListElement<T> {
+    private class ListElement {
         T value;
-        ListElement<T> nextElement;
+        ListElement nextElement;
 
         private ListElement(T value) {
             this.value = value;
         }
-        private ListElement(T value, ListElement<T> nextElement){
+        private ListElement(T value, ListElement nextElement){
             this.value = value;
             this.nextElement = nextElement;
         }
+
     }
 
     class ValueIterator implements Iterator<T> {
-        ListElement<T> thisElement = nextElement;
+        ListElement thisElement = nextElement;
 
         @Override
         public boolean hasNext() {
@@ -35,7 +38,7 @@ public class LinkedList<T> implements List<T> {
     public LinkedList() {
     }
 
-    public LinkedList(ListElement<T> firstElement) {
+    public LinkedList(ListElement firstElement) {
         this.nextElement = firstElement;
     }
 
@@ -94,15 +97,15 @@ public class LinkedList<T> implements List<T> {
         if (Objects.isNull(t)) return false;
 
         if (Objects.isNull(this.nextElement)) {
-            this.nextElement = new ListElement<T>(t);
+            this.nextElement = new ListElement(t);
             return true;
         }
 
-        ListElement<T> elementIter = this.nextElement;
+        ListElement elementIter = this.nextElement;
         while (Objects.nonNull(elementIter.nextElement)) {
             elementIter = elementIter.nextElement;
         }
-        elementIter.nextElement = new ListElement<T>(t);
+        elementIter.nextElement = new ListElement(t);
         return true;
     }
 
@@ -115,7 +118,7 @@ public class LinkedList<T> implements List<T> {
             return true;
         }
 
-        ListElement<T> pointer = this.nextElement;
+        ListElement pointer = this.nextElement;
         while (Objects.nonNull(pointer.nextElement)) {
             if (pointer.nextElement.value.equals(o)) {
                 pointer.nextElement = pointer.nextElement.nextElement;
@@ -190,9 +193,9 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
-        int counter = 0;
         if(index == 0) this.nextElement.value = element;
-        ListElement<T> elementIter = this.nextElement;
+
+        ListElement elementIter = this.nextElement;
         for (int i = 0; i < index; i++) {
             elementIter = elementIter.nextElement;
         }
@@ -209,15 +212,15 @@ public class LinkedList<T> implements List<T> {
         }
 
         if(index == 0) {
-            this.nextElement = new ListElement<T>(element, this.nextElement);
+            this.nextElement = new ListElement(element, this.nextElement);
             return;
         }
 
-        ListElement<T> pointer = this.nextElement;
+        ListElement pointer = this.nextElement;
         for(int i = 0; i < index-1; i++){
             pointer = pointer.nextElement;
         }
-        pointer.nextElement = new ListElement<>(element, pointer.nextElement);
+        pointer.nextElement = new ListElement(element, pointer.nextElement);
     }
 
     @Override
@@ -232,7 +235,7 @@ public class LinkedList<T> implements List<T> {
             return value;
         }
 
-        ListElement<T> elementIter = this.nextElement;
+        ListElement elementIter = this.nextElement;
         for (int i = 0; i < index - 1; i++) {
             elementIter = elementIter.nextElement;
         }
