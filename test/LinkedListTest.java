@@ -20,6 +20,14 @@ class LinkedListTest {
         return list;
     }
 
+    List<Integer> getListFromTo(int from, int to){
+        List<Integer> list = new LinkedList<Integer>();
+        for(int i = from; i < to; i++){
+            list.add(i);
+        }
+        return list;
+    }
+
     @Test
     void newListIsEmpty() {
         List<Integer> emptyList = new LinkedList<Integer>();
@@ -314,5 +322,33 @@ class LinkedListTest {
         list.add(2);
 
         Assertions.assertEquals(10, list.lastIndexOf(2));
+    }
+
+    @Test
+    void sublistAtStart(){
+        List<Integer> list = getList0to9();
+        List<Integer> listgoal = getListFromTo(0,3);
+
+        assertIterableEquals(listgoal, list.subList(0,3));
+        assertTrue(listgoal.containsAll(list.subList(0,3)));
+        assertTrue(list.subList(0,3).containsAll(listgoal));
+    }
+
+    @Test
+    void sublistOnEnd(){
+        List<Integer> list = getList0to9();
+        List<Integer> listGoal = getListFromTo(6,9);
+        List<Integer> sublist = list.subList(6,9);
+
+
+
+    }
+
+    @Test
+    void sublistWrongIndexThrowsError(){
+        List<Integer> list = getList0to9();
+
+
+        Assertions.assertThrows(IndexOutOfBoundsException.class, () -> list.subList(5,20));
     }
 }

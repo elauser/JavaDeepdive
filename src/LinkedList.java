@@ -7,16 +7,12 @@ public class LinkedList<T> implements List<T> {
         T value;
         ListElement<T> nextElement;
 
-        public ListElement(T value) {
+        private ListElement(T value) {
             this.value = value;
         }
-        public ListElement(T value, ListElement<T> nextElement){
+        private ListElement(T value, ListElement<T> nextElement){
             this.value = value;
             this.nextElement = nextElement;
-        }
-
-        public void setNextElement(T t) {
-            nextElement = new ListElement<T>(t);
         }
     }
 
@@ -37,6 +33,10 @@ public class LinkedList<T> implements List<T> {
     }
 
     public LinkedList() {
+    }
+
+    public LinkedList(ListElement<T> firstElement) {
+        this.nextElement = firstElement;
     }
 
     public static void main(String[] args) {
@@ -267,7 +267,20 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        return null;
+        if(fromIndex==toIndex) return new LinkedList<>();
+        if(fromIndex < 0 || toIndex > this.size()-1) throw new IndexOutOfBoundsException("Must be bigger than 0 and smaller than size-1");
+        if(fromIndex>toIndex) throw new IllegalArgumentException("fromIndex can't be smaller than toIndex");
+
+        List<T> newList = new LinkedList<>();
+
+        int counter = 0;
+        for(T element: this){
+            if(counter >= fromIndex && counter < toIndex){
+                newList.add(element);
+                counter++;
+            }
+        }
+        return newList;
     }
 
 }
