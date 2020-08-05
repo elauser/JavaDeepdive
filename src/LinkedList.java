@@ -155,7 +155,14 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        boolean retValue = false;
+        for(T element:this){
+            if(!c.contains(element)){
+                this.remove(element);
+                retValue = true;
+            }
+        }
+        return retValue;
     }
 
     @Override
