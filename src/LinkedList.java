@@ -160,7 +160,7 @@ public class LinkedList<T> implements List<T> {
 
     @Override
     public void clear() {
-
+        this.nextElement = null;
     }
 
     @Override

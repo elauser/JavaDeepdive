@@ -351,4 +351,13 @@ class LinkedListTest {
 
         Assertions.assertThrows(IndexOutOfBoundsException.class, () -> list.subList(5,20));
     }
+
+    @Test
+    void clearEmptysList(){
+        List<Integer> list = getList0to9();
+
+        list.clear();
+
+        Assertions.assertEquals(0, list.size());
+    }
 }
