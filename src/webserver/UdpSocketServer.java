@@ -3,6 +3,7 @@ package webserver;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 
 public class UdpSocketServer {
@@ -16,6 +17,10 @@ public class UdpSocketServer {
                 System.out.println("Start Waiting for Packets");
                 socket.receive(packet);
                 System.out.println("Text received is " + new String(buffer));
+
+                DatagramPacket packet2 = new DatagramPacket(buffer, buffer.length, packet.getAddress(), packet.getPort());
+                socket.send(packet2);
+                System.out.println("Socket Echoed");
             }
         } catch(SocketException e){
             System.out.println("SocketException: " + e.getMessage());

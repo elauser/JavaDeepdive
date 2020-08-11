@@ -21,6 +21,10 @@ public class UdpSocketClient {
 
                 DatagramPacket packet = new DatagramPacket(buffer, buffer.length, address, 5000);
                 datagramSocket.send(packet);
+
+                DatagramPacket packet2 = new DatagramPacket(buffer, buffer.length);
+                datagramSocket.receive(packet2);
+                System.out.println("echo was: " + new String(buffer));
             } while (!echoString.equals("exit"));
 
 
